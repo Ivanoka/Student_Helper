@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 from datetime import datetime
 from pytz import timezone
 
-date = datetime.now(timezone('Europe/Moscow'))
+DATE = datetime.now(timezone('Europe/Moscow'))
 
 
 # LOAD .env FILE
@@ -25,12 +25,12 @@ def get_token():
 def main():
     bot = telebot.TeleBot(get_token())
     print("Бот запущен")
-    bot.send_message(chat_id=1002608184, text=f"Бот запущен в {date.hour}"
-                                              f":{date.minute}"
+    bot.send_message(chat_id=1002608184, text=f"Бот запущен в {DATE.hour}"
+                                              f":{DATE.minute}"
                                               f" по МСК"
-                                              f", {date.day}"
-                                              f".{date.month}"
-                                              f".{date.year}")
+                                              f", {DATE.day}"
+                                              f".{DATE.month}"
+                                              f".{DATE.year}")
 
     @bot.message_handler(content_types=['text'])
     def get_text_message(message):
