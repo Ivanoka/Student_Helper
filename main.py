@@ -1,5 +1,5 @@
 import asyncio
-from DutyModule import DutyModuleMain
+from dutymodule import DutyModuleMain
 
 
 

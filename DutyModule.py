@@ -1,6 +1,6 @@
-import Lib.VkApiFunctions as VkApiFunctions
+import lib.vk_api_functions as vk_api_functions
 
 def DutyModuleMain():
     while True:
-        event = VkApiFunctions.LongPollListen()
+        event = vk_api_functions.LongPollListen()
         print(event) 
