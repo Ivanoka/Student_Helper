@@ -1,5 +1,3 @@
-import asyncio
-from dutymodule import DutyModuleMain
 import os, telebot, time
 from dotenv import load_dotenv
 from datetime import datetime
@@ -8,11 +6,6 @@ from pytz import timezone
 date = datetime.now(timezone('Europe/Moscow'))
 
 
-if __name__ == "__main__":
-    asyncio.run(DutyModuleMain())
-    print("Hello")
-else:
-    exit()
 # LOAD .env FILE
 def get_token():
     for file in os.listdir(".\config"):
