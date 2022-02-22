@@ -43,4 +43,4 @@ class MessangeSend():
 
 
 if __name__ == "__main__":
-    MessangeSend.User(172176123, "DFsg")
+    MessangeSend.Chat(2, "СЕГОДНЯ СУЧКИ МЫ БУДЕМ ЕБАТЬСЯ ДОЛГО И ПЛОТНО")

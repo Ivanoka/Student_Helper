@@ -1,0 +1,34 @@
+{
+    "5142211": {
+        "0": {
+            "DAY": "Понедельник",
+            "SENDFLAG": true,
+            "TIMESEND": "09.50"
+        },
+        "1": {
+            "DAY": "Вторник",
+            "SENDFLAG": true,
+            "TIMESEND": "20:28"
+        },
+        "2": {
+            "DAY": "Среда",
+            "SENDFLAG": true,
+            "TIMESEND": "09.50"
+        },
+        "3": {
+            "DAY": "Четверг",
+            "SENDFLAG": true,
+            "TIMESEND": "09.50"
+        },
+        "4": {
+            "DAY": "Пятница",
+            "SENDFLAG": true,
+            "TIMESEND": "09.50"
+        },
+        "5": {
+            "DAY": "Суббота",
+            "SENDFLAG": false,
+            "TIMESEND": "09.00"
+        }
+    }
+}
