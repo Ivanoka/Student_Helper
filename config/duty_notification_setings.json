@@ -13,12 +13,12 @@
         "2": {
             "DAY": "Среда",
             "SENDFLAG": true,
-            "TIMESEND": "23:51"
+            "TIMESEND": "00:51"
         },
         "3": {
             "DAY": "Четверг",
             "SENDFLAG": true,
-            "TIMESEND": "17:00"
+            "TIMESEND": "01:11"
         },
         "4": {
             "DAY": "Пятница",
