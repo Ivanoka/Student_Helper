@@ -10,6 +10,9 @@ sqlCursor = sqlConnection.cursor()
 
 
 
+def SelectionDuty():
+    pass
+
 def SendNotification():
     with open('.\config\duty_notification_setings.json', 'r', encoding='utf-8') as dutyNotifSend:
                 config = json.load(dutyNotifSend)
