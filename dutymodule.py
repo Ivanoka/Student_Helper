@@ -1,5 +1,6 @@
 from datetime import datetime
 from datetime import date
+from time import sleep
 import json
 import sqlite3
 import lib.vk_api_functions as VkApiFunctions
@@ -53,26 +54,41 @@ def SelectionLastDuty(numberGroup, idDuty):
 
 
 def DutyModuleMain():
-    print(date.today().weekday())
-    with open('config\duty_notification_settings.json', 'r', encoding='utf-8') as dutyNotifSend:
-            config = json.load(dutyNotifSend)
-    sqlCursor.execute("SELECT GROUPNUMBER FROM GROUPS WHERE DUTYENABLE = 1")
-    groups = sqlCursor.fetchone()
-    if groups == None:
-        pass
-    else:
-        for numberGroup in groups:
-            with open('config\duty_notification_settings.json', 'r', encoding='utf-8') as dutyNotifSend:
+    while True:
+        print(date.today().weekday())
+        with open('config\duty_notification_settings.json', 'r', encoding='utf-8') as dutyNotifSend:
                 config = json.load(dutyNotifSend)
-            if config[str(numberGroup)][str(date.today().weekday())]["SENDFLAG"]:
-                if config[str(numberGroup)][str(date.today().weekday())]["TIMESEND"] == (datetime.now()).strftime('%H:%M'):
-                    sqlCursor.execute("SELECT ID FROM '" + str(numberGroup) + "' WHERE LASTONDUTY = 1")
-                    idDuty = sqlCursor.fetchone()
-                    if idDuty == None:
-                        SelectionNewDuty(numberGroup)
+        sqlCursor.execute("SELECT GROUPNUMBER FROM GROUPS WHERE DUTYENABLE = 1")
+        groups = sqlCursor.fetchone()
+        if groups == None:
+            with open('config\settings.json', 'r', encoding='utf-8') as config:
+                config = json.load(config)
+                sleep(int(config["TIME_SLEEP"]))
+        else:
+            for numberGroup in groups:
+                with open('config\duty_notification_settings.json', 'r', encoding='utf-8') as dutyNotifSend:
+                    config = json.load(dutyNotifSend)
+                if config[str(numberGroup)][str(date.today().weekday())]["SENDFLAG"]:
+                    if config[str(numberGroup)][str(date.today().weekday())]["TIMESEND"] == (datetime.now()).strftime('%H:%M'):
+                        sqlCursor.execute("SELECT ID FROM '" + str(numberGroup) + "' WHERE LASTONDUTY = 1")
+                        idDuty = sqlCursor.fetchone()
+                        if idDuty == None:
+                            SelectionNewDuty(numberGroup)
+                            with open('config\settings.json', 'r', encoding='utf-8') as config:
+                                config = json.load(config)
+                                sleep(int(config["TIME_SLEEP"]))
+                        else:
+                            SelectionLastDuty(numberGroup, idDuty[0])
+                            with open('config\settings.json', 'r', encoding='utf-8') as config:
+                                config = json.load(config)
+                                sleep(int(config["TIME_SLEEP"]))
                     else:
-                        SelectionLastDuty(numberGroup, idDuty[0])
+                        with open('config\settings.json', 'r', encoding='utf-8') as config:
+                            config = json.load(config)
+                            sleep(int(config["TIME_SLEEP"]))
                 else:
-                    pass
-            else:
-                pass
+                    with open('config\settings.json', 'r', encoding='utf-8') as config:
+                        config = json.load(config)
+                        sleep(int(config["TIME_SLEEP"]))
+
+DutyModuleMain()
