@@ -1,11 +1,10 @@
-import time
 from datetime import datetime
 from datetime import date
 import json
 import sqlite3
 import lib.vk_api_functions as VkApiFunctions
 
-timeSleep = 10
+
 sqlConnection = sqlite3.connect('db\database.db')
 sqlCursor = sqlConnection.cursor()
 
@@ -16,7 +15,7 @@ def SelectionNewDuty(numberGroup):
 
     sqlCursor.execute("SELECT COUNT(*) FROM '" + str(numberGroup) + "'")
     countId = sqlCursor.fetchone()
-    countId = countId[0] - 1
+    countId = countId[0]
     newDuty = (date.today()).day % countId + 1
     while flag:
         sqlCursor.execute("SELECT SICK, WASONDUTY FROM  '" + str(numberGroup) + "' WHERE ID = " + str(newDuty))
@@ -27,11 +26,14 @@ def SelectionNewDuty(numberGroup):
             print("Дежурный выбран") #######################
             flag = False
         else:
-            newDuty = (newDuty + 1) % (date.today()).day
-
+            newDuty = (newDuty % countId) + 1
+            
 def SelectionLastDuty(numberGroup, idDuty):
     flag = True
     
+    sqlCursor.execute("SELECT COUNT(*) FROM '" + str(numberGroup) + "'")
+    countId = sqlCursor.fetchone()
+    countId = countId[0]
     while flag:
         sqlCursor.execute("SELECT SICK, WASONDUTY FROM  '" + str(numberGroup) + "' WHERE ID = " + str(idDuty))
         dutySick = sqlCursor.fetchone()
@@ -45,34 +47,32 @@ def SelectionLastDuty(numberGroup, idDuty):
             else:
                 flag = False
         else:
-            idDuty = (idDuty + 1) % (date.today()).day
-
+            idDuty = (idDuty % countId) + 1
+    
+    
 
 
 def DutyModuleMain():
-    while True:
-        print(date.today().weekday())
-        with open('.\config\duty_notification_setings.json', 'r', encoding='utf-8') as dutyNotifSend:
+    print(date.today().weekday())
+    with open('config\duty_notification_settings.json', 'r', encoding='utf-8') as dutyNotifSend:
+            config = json.load(dutyNotifSend)
+    sqlCursor.execute("SELECT GROUPNUMBER FROM GROUPS WHERE DUTYENABLE = 1")
+    groups = sqlCursor.fetchone()
+    if groups == None:
+        pass
+    else:
+        for numberGroup in groups:
+            with open('config\duty_notification_settings.json', 'r', encoding='utf-8') as dutyNotifSend:
                 config = json.load(dutyNotifSend)
-        sqlCursor.execute("SELECT GROUPNUMBER FROM GROUPS WHERE DUTYENABLE = 1")
-        groups = sqlCursor.fetchone()
-        if groups == None:
-            time.sleep(timeSleep)
-        else:
-            for numberGroup in groups:
-                with open('.\config\duty_notification_setings.json', 'r', encoding='utf-8') as dutyNotifSend:
-                    config = json.load(dutyNotifSend)
-                if config[str(numberGroup)][str(date.today().weekday())]["SENDFLAG"]:
-                    if config[str(numberGroup)][str(date.today().weekday())]["TIMESEND"] == (datetime.now()).strftime('%H:%M'):
-                        sqlCursor.execute("SELECT ID FROM '" + str(numberGroup) + "' WHERE LASTONDUTY = 1")
-                        idDuty = sqlCursor.fetchone()
-                        if idDuty == None:
-                            SelectionNewDuty(numberGroup)
-                            time.sleep(timeSleep)
-                        else:
-                            SelectionLastDuty(numberGroup, idDuty[0])
-                            time.sleep(timeSleep)     
+            if config[str(numberGroup)][str(date.today().weekday())]["SENDFLAG"]:
+                if config[str(numberGroup)][str(date.today().weekday())]["TIMESEND"] == (datetime.now()).strftime('%H:%M'):
+                    sqlCursor.execute("SELECT ID FROM '" + str(numberGroup) + "' WHERE LASTONDUTY = 1")
+                    idDuty = sqlCursor.fetchone()
+                    if idDuty == None:
+                        SelectionNewDuty(numberGroup)
                     else:
-                        time.sleep(timeSleep)
+                        SelectionLastDuty(numberGroup, idDuty[0])
                 else:
-                    time.sleep(timeSleep)
+                    pass
+            else:
+                pass
