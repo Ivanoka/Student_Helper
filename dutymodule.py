@@ -3,7 +3,7 @@ from datetime import date
 from time import sleep
 import json
 import sqlite3
-import lib.vk_api_functions as VkApiFunctions
+import lib.vkApiFunctions as VkApiFunctions
 
 
 sqlConnection = sqlite3.connect('db\database.db')
@@ -63,7 +63,7 @@ def DutyModuleMain():
         if groups == None:
             with open('config\settings.json', 'r', encoding='utf-8') as config:
                 config = json.load(config)
-                sleep(int(config["TIME_SLEEP"]))
+                sleep(int(config["TIMESLEEP"]))
         else:
             for numberGroup in groups:
                 with open('config\duty_notification_settings.json', 'r', encoding='utf-8') as dutyNotifSend:
@@ -76,19 +76,19 @@ def DutyModuleMain():
                             SelectionNewDuty(numberGroup)
                             with open('config\settings.json', 'r', encoding='utf-8') as config:
                                 config = json.load(config)
-                                sleep(int(config["TIME_SLEEP"]))
+                                sleep(int(config["TIMESLEEP"]))
                         else:
                             SelectionLastDuty(numberGroup, idDuty[0])
                             with open('config\settings.json', 'r', encoding='utf-8') as config:
                                 config = json.load(config)
-                                sleep(int(config["TIME_SLEEP"]))
+                                sleep(int(config["TIMESLEEP"]))
                     else:
                         with open('config\settings.json', 'r', encoding='utf-8') as config:
                             config = json.load(config)
-                            sleep(int(config["TIME_SLEEP"]))
+                            sleep(int(config["TIMESLEEP"]))
                 else:
                     with open('config\settings.json', 'r', encoding='utf-8') as config:
                         config = json.load(config)
-                        sleep(int(config["TIME_SLEEP"]))
+                        sleep(int(config["TIMESLEEP"]))
 
 DutyModuleMain()

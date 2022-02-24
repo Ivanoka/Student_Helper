@@ -1,10 +1,10 @@
 {
     "CONNECTION": {
         "TOKEN": "e81aa7737c33977180727c8a63ff3c8c3fc28c3f8fdd91851b28e77f950d0fccdb329fea69bfad75f72b3",
-        "GROUP_ID": "187132131",
-        "KEY": "409cad87b99321a867a0d6f5cfb67bf0a9d6d0bf",
+        "GROUPID": "187132131",
+        "KEY": "99d3925bd64a423252a62a05ef2e954009a87681",
         "SERVER": "im.vk.com/nim187132131",
-        "TS": "1731904215"
+        "TS": "1820982988"
     },
-    "TIME_SLEEP": "10"
+    "TIMESLEEP": "10"
 }
