@@ -1,0 +1,16 @@
+{
+    "description": "For correct work, change the file name to settings.json",
+
+
+
+
+    "CONNECTION": {
+        "TOKEN": "Your group token",
+        "GROUPID": "Your group ID",
+        "KEY": "https://dev.vk.com/method/messages.getLongPollServer",
+        "SERVER": "https://dev.vk.com/method/messages.getLongPollServer",
+        "TS": "https://dev.vk.com/method/messages.getLongPollServer"
+    },
+    "TIMESLEEP": "10",
+    "COUNTOFTRY": "100"
+}
