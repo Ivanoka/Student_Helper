@@ -6,5 +6,6 @@
         "SERVER": "im.vk.com/nim187132131",
         "TS": "1820982988"
     },
-    "TIMESLEEP": "10"
+    "TIMESLEEP": "10",
+    "COUNTOFTRY": "100"
 }
