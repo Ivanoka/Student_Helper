@@ -2,6 +2,7 @@ Student Helper
 ==============
 
 This project is created to simplify and automate the process of managing a study group.
+The developer is a student at the Mogilev State A. Kuleshov University at the Faculty of Mathematics and Natural Science.
 
 **Opportunities:**
 * Registration of a new chat for a group, entered into the database
