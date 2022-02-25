@@ -1,5 +1,5 @@
-Student Helper (server)
-=======================
+Student Helper
+==============
 
 This project is created to simplify and automate the process of managing a study group.
 
