@@ -1,2 +1,1 @@
-# StudHelpServer
-<h1 align = "centre">Student Helper (server)</h1>
+<h1 style = "align: center">Student Helper (server)</h1>
