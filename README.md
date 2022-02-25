@@ -1,6 +1,17 @@
 Student Helper (server)
 =======================
 
+This project is created to simplify and automate the process of managing a study group.
+
+**Opportunities:**
+* Registration of a new chat for a group, entered into the database
+
+**In the plans:**
+* Client in the form of a web application for android for managing a study group
+  * Adding and removing students
+  * Marking sick people
+
+
 Version History
 ===============
 ```
