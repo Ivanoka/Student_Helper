@@ -1,5 +1,1 @@
-# StudHelpServer
-
-Ветка main
-
-НИКОМУ НЕ ТРОГАТЬ
+<h1 align = "centre">Student Helper (server)</h1>
