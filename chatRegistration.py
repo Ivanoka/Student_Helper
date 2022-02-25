@@ -34,7 +34,7 @@ for i in range(countOfTry):
         sleep(0.1)
         continue
 
-#ГРУППА УЖЕ ЗАРЕГЕСТРИРОВАНА
+#ГРУППА УЖЕ ЗАРЕГЕСТРИРОВАНАser
 for id in groupIdCode:
     if chatId == id[1]:
         with open('config\message_text.json', 'r', encoding='utf-8') as message:
