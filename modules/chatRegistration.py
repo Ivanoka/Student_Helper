@@ -10,20 +10,20 @@ peerId = int(sys.argv[1])
 chatId = peerId - 2000000000
 timeIsOver = 5
 timeNow = datetime.now()
-with open('config\message_text.json', 'r', encoding='utf-8') as config:
-    countOfTry = (json.load(config))["COUNTOFTRY"]
-sqlConnection = sqlite3.connect('db\database.db')
+with open('config\settings.json', 'r', encoding='utf-8') as config:
+    countOfTry = int((json.load(config))["COUNTOFTRY"])
+sqlConnection = sqlite3.connect('.\db\database.db')
 sqlCursor = sqlConnection.cursor()
 
 
-#ОБРАБОТКА ОШИБОК
+#ERROR PROCESSING
 def errorMessage(i):
     if i == 99:
         with open('config\message_text.json', 'r', encoding='utf-8') as message:
             VkApiFuntions.MessangeSend.Chat(chatId, (json.load(message))["chatRegistration"]["errorMessage"])
         sys.exit()
 
-#ПОЛУЧЕНИЕ ИНФОРМАЦИИ ОТ ГРУППАХ
+#RECEIVING INFORMATION FROM GROUPS
 for i in range(countOfTry):
     errorMessage(i)
     try:
@@ -34,14 +34,14 @@ for i in range(countOfTry):
         sleep(0.1)
         continue
 
-#ГРУППА УЖЕ ЗАРЕГЕСТРИРОВАНАser
+#THE GROUP IS ALREADY REGISTERED
 for id in groupIdCode:
     if chatId == id[1]:
         with open('config\message_text.json', 'r', encoding='utf-8') as message:
             VkApiFuntions.MessangeSend.Chat(chatId, ((json.load(message))["chatRegistration"]["groupIsAlreadyRegistered"]).format(id[0]))
         sys.exit()
 
-#НЕТ ГРУПП ДЛЯ РЕГИСТРАЦИИ
+#NO GROUPS TO REGISTER
 noGrToReg = True
 for id in groupIdCode:
     if id[1] == None: noGrToReg = False
@@ -50,7 +50,7 @@ if noGrToReg:
         VkApiFuntions.MessangeSend.Chat(chatId, (json.load(message))["chatRegistration"]["noGroupsToRegister"])
     sys.exit()
 
-#РЕГИСТАРАЦИЯ БЕСЕДЫ
+#CHAT REGISTRATION
 with open('config\message_text.json', 'r', encoding='utf-8') as message:
     VkApiFuntions.MessangeSend.Chat(chatId, (json.load(message))["chatRegistration"]["chatConnection"])
 while True:
