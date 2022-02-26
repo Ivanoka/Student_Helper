@@ -6,6 +6,7 @@ The developer is a student at the Mogilev State A. Kuleshov University at the Fa
 
 **Opportunities:**
 * Registration of a new chat for a group, entered into the database
+* Сheck and update server, key and ts before launch
 
 **In the plans:**
 * Client in the form of a web application for android for managing a study group
