@@ -12,9 +12,15 @@ while True:
     if "error" in newConnectionData:
         print(newConnectionData)
     else:
-        newConfig["CONNECTION"]["SERVER"] = newConnectionData["response"]["server"]
-        newConfig["CONNECTION"]["KEY"] = newConnectionData["response"]["key"]
-        newConfig["CONNECTION"]["TS"] = newConnectionData["response"]["ts"]
+        if newConfig["CONNECTION"]["SERVER"] != newConnectionData["response"]["server"]:
+            newConfig["CONNECTION"]["SERVER"] = newConnectionData["response"]["server"]
+            print("Update 'server' value")
+        if newConfig["CONNECTION"]["KEY"] != newConnectionData["response"]["key"]:
+            newConfig["CONNECTION"]["KEY"] = newConnectionData["response"]["key"]
+            print("Update 'key' value")
+        if newConfig["CONNECTION"]["TS"] != newConnectionData["response"]["ts"]:
+            newConfig["CONNECTION"]["TS"] = newConnectionData["response"]["ts"]
+            print("Update 'ts' value")
         with open('config\settings.json', 'w', encoding='utf-8') as config:
             json.dump(newConfig, config, ensure_ascii=False, indent=4)
     sleep(3600)

@@ -6,8 +6,8 @@ import modules.lib.vkApiFunctions as VkApiFuntions
 
 print("Updating your connection details...")
 subprocess.Popen([sys.executable, 'modules\configUpdate.py'])
-sleep(1)
-print("Bot launched.")
+sleep(3)
+print("Bot launched\n")
 
 while True:
     try:
