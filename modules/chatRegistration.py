@@ -12,12 +12,12 @@ timeIsOver = 5
 timeNow = datetime.now()
 with open('config\settings.json', 'r', encoding='utf-8') as config:
     countOfTry = int((json.load(config))["COUNTOFTRY"])
-sqlConnection = sqlite3.connect('.\db\database.db')
+sqlConnection = sqlite3.connect('db\database.db')
 sqlCursor = sqlConnection.cursor()
 
 
 #ERROR PROCESSING
-def errorMessage(i):
+def ErrorMessage(i):
     if i == 99:
         with open('config\message_text.json', 'r', encoding='utf-8') as message:
             VkApiFuntions.MessangeSend.Chat(chatId, (json.load(message))["chatRegistration"]["errorMessage"])
@@ -25,7 +25,7 @@ def errorMessage(i):
 
 #RECEIVING INFORMATION FROM GROUPS
 for i in range(countOfTry):
-    errorMessage(i)
+    ErrorMessage(i)
     try:
         sqlCursor.execute("SELECT GROUPNUMBER, VKID, AUTHORIZATIONCODE FROM GROUPS")
         groupIdCode = sqlCursor.fetchall()
@@ -61,7 +61,7 @@ while True:
             for code in groupIdCode:
                 if event.message.text == code[2]:
                     for i in range(countOfTry):
-                        errorMessage(i)
+                        ErrorMessage(i)
                         try:
                             sqlCursor.execute("SELECT VKID FROM GROUPS WHERE GROUPNUMBER = {}".format(code[0]))
                             oldVkId = sqlCursor.fetchone()

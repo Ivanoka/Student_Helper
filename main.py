@@ -4,14 +4,16 @@ import subprocess
 from time import sleep
 import modules.lib.vkApiFunctions as VkApiFuntions
 
-
-
-#subprocess.Popen([sys.executable, 'modules\dutyModule.py'])
+print("Updating your connection details...")
+subprocess.Popen([sys.executable, 'modules\configUpdate.py'])
+sleep(1)
+print("Bot launched.")
 
 while True:
     try:
         event = VkApiFuntions.LongPollListen()
-        with open('.\config\settings.json', 'r', encoding='utf-8') as json_cfg:
+        print(event)
+        with open('config\settings.json', 'r', encoding='utf-8') as json_cfg:
             group_id = (json.load(json_cfg))["CONNECTION"]["GROUPID"]
         if event.message.text == "/start":
             subprocess.Popen([sys.executable, 'modules\chatRegistration.py', str(event.message.peer_id)])

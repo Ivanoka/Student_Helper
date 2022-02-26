@@ -6,7 +6,7 @@ import json
 
 
 def LongPollListen():
-    with open('.\config\settings.json', 'r', encoding='utf-8') as json_cfg:
+    with open('config\settings.json', 'r', encoding='utf-8') as json_cfg:
         config = json.load(json_cfg)
     bot_session = vk_api.VkApi(token = config["CONNECTION"]["TOKEN"])
     group_id = config["CONNECTION"]["GROUPID"]
@@ -17,7 +17,7 @@ def LongPollListen():
         
 class MessangeSend():
     def User(user_id, message):
-        with open('.\config\settings.json', 'r', encoding='utf-8') as json_cfg:
+        with open('config\settings.json', 'r', encoding='utf-8') as json_cfg:
             config = json.load(json_cfg)
         bot_session = vk_api.VkApi(token = config["CONNECTION"]["TOKEN"])
         vk = bot_session.get_api()
@@ -29,7 +29,7 @@ class MessangeSend():
                         message = message)
         
     def Chat(chat_id, message):
-        with open('.\config\settings.json', 'r', encoding='utf-8') as json_cfg:
+        with open('config\settings.json', 'r', encoding='utf-8') as json_cfg:
             config = json.load(json_cfg)
         bot_session = vk_api.VkApi(token = config["CONNECTION"]["TOKEN"])
         vk = bot_session.get_api()
