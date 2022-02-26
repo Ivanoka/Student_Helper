@@ -17,6 +17,10 @@ The developer is a student at the Mogilev State A. Kuleshov University at the Fa
 Version History
 ===============
 ```
+0.1.1 In progress (26.02.2022)
+* Added check and update server, key and ts
+* Check time once per hour
+* If there is an error, it is printed to the console
 0.1 In progress (26.02.2022)
 * Added group registration
 * Registration is based on an authorization code
