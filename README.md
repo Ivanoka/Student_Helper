@@ -21,6 +21,7 @@ Version History
 * Added check and update server, key and ts
 * Check time once per hour
 * If there is an error, it is printed to the console
+
 0.1 In progress (26.02.2022)
 * Added group registration
 * Registration is based on an authorization code
