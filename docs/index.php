@@ -8,5 +8,6 @@
 </head>
 <body>
     <?php echo "Ваше имя: "; ?>
+    <h1>RRJH</h1>
 </body>
 </html>
