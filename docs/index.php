@@ -7,7 +7,7 @@
     <title>Document</title>
 </head>
 <body>
-    <?php if(isset($_GET['name']){ ?><p>WSGHWEREGHWQ#G</p><?php } ?>
+    <?php if(isset($_GET["name"]){ ?><p>WSGHWEREGHWQ#G</p><?php } ?>
     <h1>RRJH</h1>
 </body>
 </html>
